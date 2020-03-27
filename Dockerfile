@@ -7,7 +7,8 @@ RUN pacman -Sy && \
       gettext grep gzip sed ncurses
 
 RUN useradd -ms /bin/bash builder && \
-    mkdir -p /home/builder/.ssh
+    mkdir -p /home/builder/.ssh && \
+    touch /home/builder/.ssh/known_hosts
 
 COPY ssh_config /home/builder/.ssh/config
 

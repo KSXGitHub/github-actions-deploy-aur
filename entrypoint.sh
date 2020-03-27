@@ -9,7 +9,6 @@ SSH_PRIVATE_KEY=$INPUT_SSH_PRIVATE_KEY
 
 NEW_RELEASE=${GITHUB_REF##*/v}
 
-
 echo "---------------- AUR Package version $PACKAGE_NAME/$NEW_RELEASE ----------------"
 
 ssh-keyscan -t ed25519 aur.archlinux.org >> ~/.ssh/known_hosts
