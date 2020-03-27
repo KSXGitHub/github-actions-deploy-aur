@@ -11,6 +11,8 @@ NEW_RELEASE=${GITHUB_REF##*/v}
 
 echo "---------------- AUR Package version $PACKAGE_NAME/$NEW_RELEASE ----------------"
 
+touch ~/.ssh/known_hosts
+
 ssh-keyscan -t ed25519 aur.archlinux.org >> ~/.ssh/known_hosts
 
 echo -e "${SSH_PRIVATE_KEY//_/\\n}" > ~/.ssh/aur
