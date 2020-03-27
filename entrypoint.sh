@@ -3,10 +3,10 @@
 set -o errexit -o pipefail -o nounset
 
 REPO_NAME=$1
-NEW_RELEASE=${2##*/v}
-GIT_USERNAME=$3
-GIT_EMAIL=$4
-SSH_PRIVATE_KEY=$5
+NEW_RELEASE=${GITHUB_REF##*/v}
+GIT_USERNAME=$2
+GIT_EMAIL=$3
+SSH_PRIVATE_KEY=$4
 
 
 echo "---------------- AUR Package version $REPO_NAME/$NEW_RELEASE ----------------"

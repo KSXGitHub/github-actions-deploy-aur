@@ -5,9 +5,6 @@ inputs:
   package_name:
     description: 'AUR package name'
     required: true
-  version:
-    description: 'version to publish'
-    required: true
   commit_username:
     description: 'The username to use when creating the new commit.'
     required: true
@@ -22,4 +19,4 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.package_name }} ${{ inputs.version }} ${{ inputs.commit_username }} ${{ inputs.commit_email }} ${{ inputs.ssh_private_key }}
+    - ${{ inputs.package_name }} ${{ inputs.commit_username }} ${{ inputs.commit_email }} ${{ inputs.ssh_private_key }}
