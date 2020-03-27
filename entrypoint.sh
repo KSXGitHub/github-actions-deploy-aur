@@ -5,7 +5,7 @@ set -o errexit -o pipefail -o nounset
 echo "---------------- ENV ----------------"
 env
 echo "---------------- VARS ----------------"
-echo "VARS: >>>> $* <<<<"
+echo "VARS: >>>> $1 $2 $3 ${4##*END OPEN} <<<<"
 
 
 REPO_NAME=$1
