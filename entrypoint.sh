@@ -26,6 +26,7 @@ REPO_URL="ssh://aur@aur.archlinux.org/${PACKAGE_NAME}.git"
 
 echo "---------------- $REPO_URL ----------------"
 
+cd /tmp
 git clone "$REPO_URL"
 cd "$PACKAGE_NAME"
 
