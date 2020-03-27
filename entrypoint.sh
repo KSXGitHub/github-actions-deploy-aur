@@ -2,6 +2,12 @@
 
 set -o errexit -o pipefail -o nounset
 
+echo "---------------- ENV ----------------"
+env
+echo "---------------- VARS ----------------"
+echo "VARS: >>>> $* <<<<"
+
+
 REPO_NAME=$1
 NEW_RELEASE=${GITHUB_REF##*/v}
 GIT_USERNAME=$2
