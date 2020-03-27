@@ -40,5 +40,5 @@ echo "------------- BUILD DONE ----------------"
 
 # Update aur
 git add PKGBUILD .SRCINFO
-git commit -m "Update to $NEW_RELEASE"
-
+git commit --allow-empty  -m "Update to $NEW_RELEASE"
+git push
