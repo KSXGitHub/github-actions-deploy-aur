@@ -2,19 +2,16 @@
 name: 'AUR publish docker'
 description: 'Publish an AUR package'
 inputs:
-  package-name:
+  package_name:
     description: 'AUR package name'
     required: true
-  version:
-    description: 'version to publish'
-    required: true
-  commit-username:
+  commit_username:
     description: 'The username to use when creating the new commit.'
     required: true
-  commit-email:
+  commit_email:
     description: 'The email to use when creating the new commit.'
     required: true
-  ssh-private-key:
+  ssh_private_key:
     description: 'Your private key with access to AUR package.'
     required: true
 
@@ -22,4 +19,4 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.package-name }} ${{ inputs.version }} ${{ inputs.commit-username }} ${{ inputs.commit-email }} ${{ inputs.ssh-private-key }}
+    - ${{ inputs.package_name }} ${{ github.ref }} ${{ inputs.commit_username }} ${{ inputs.commit_email }} ${{ inputs.ssh_private_key }}

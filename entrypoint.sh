@@ -3,10 +3,13 @@
 set -o errexit -o pipefail -o nounset
 
 REPO_NAME=$1
-NEW_RELEASE=$2
+NEW_RELEASE=${2##*/v}
 GIT_USERNAME=$3
 GIT_EMAIL=$4
 SSH_PRIVATE_KEY=$5
+
+
+echo "---------------- AUR Package version $REPO_NAME/$NEW_RELEASE ----------------"
 
 ssh-keyscan -t ed25519 aur.archlinux.org >> ~/.ssh/known_hosts
 
@@ -14,12 +17,12 @@ echo -e "${SSH_PRIVATE_KEY//_/\\n}" > ~/.ssh/aur
 
 chmod 600 ~/.ssh/aur*
 
-sed -i "s/name = .*$/name = $GIT_USERNAME/" ~/.gitconfig
-sed -i "s/email = .*$/email = $GIT_EMAIL/" ~/.gitconfig
+git config --global user.name "$GIT_USERNAME"
+git config --global user.email "$GIT_EMAIL"
 
 REPO_URL="ssh://aur@aur.archlinux.org/${REPO_NAME}.git"
 
-echo "------------- CLONNING $REPO_URL ----------------"
+echo "---------------- $REPO_URL ----------------"
 
 git clone $REPO_URL
 cd $REPO_NAME
@@ -42,3 +45,5 @@ echo "------------- BUILD DONE ----------------"
 git add PKGBUILD .SRCINFO
 git commit --allow-empty  -m "Update to $NEW_RELEASE"
 git push
+
+echo "------------- PUBLISH DONE ----------------"

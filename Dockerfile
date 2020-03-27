@@ -10,7 +10,6 @@ RUN useradd -ms /bin/bash builder && \
     mkdir -p /home/builder/.ssh
 
 COPY ssh_config /home/builder/.ssh/config
-COPY gitconfig /home/builder/.gitconfig
 
 RUN chown builder:builder /home/builder -R && \
     chmod 600 /home/builder/.ssh/* -R

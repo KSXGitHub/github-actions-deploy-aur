@@ -4,23 +4,19 @@ This action can publish an AUR package.
 
 ## Inputs
 
-### `package-name`
+### `package_name`
 
 **Required** The AUR package name you want to update.
 
-### `version`
-
-**Required** version to publish.
-
-### `commit-username`
+### `commit_username`
 
 **Required** The username to use when creating the new commit.
 
-### `commit-email`
+### `commit_email`
 
 **Required** The email to use when creating the new commit.
 
-### `ssh-private-key`
+### `ssh_private_key`
 
 **Required** Your private key with access to AUR package.
 
@@ -29,11 +25,18 @@ This action can publish an AUR package.
 ## Example usage
 
 ```
-uses: aur-publish-docker-action@v1
-with:
-  package-name: my-awesome-package
-  version: {{ github.ref }}
-  commit-username: 'Github Action Bot'
-  commit-email: github-action-bot@example.com
-  ssh-private-key: {{ secrets.aur-ssh-private-key }}
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  aur_publish:
+    uses: aur-publish-docker-action@v1
+    with:
+      package_name: my-awesome-package
+      version: {{ github.ref }}
+      commit_username: 'Github Action Bot'
+      commit_email: github-action-bot@example.com
+      ssh_private_key: {{ secrets.AUR_SSH_PRIVATE_KEY }}
 ```
