@@ -25,18 +25,22 @@ This action can publish an AUR package.
 ## Example usage
 
 ```
+name: aur-publish
 on:
   push:
     tags:
       - '*'
 
 jobs:
-  aur_publish:
-    uses: aur-publish-docker-action@v1
-    with:
-      package_name: my-awesome-package
-      version: {{ github.ref }}
-      commit_username: 'Github Action Bot'
-      commit_email: github-action-bot@example.com
-      ssh_private_key: {{ secrets.AUR_SSH_PRIVATE_KEY }}
+  aur-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish AUR package
+        uses: guumaster/aur-publish-docker-action@v1
+        with:
+          package_name: my-awesome-package
+          version: ${{ github.ref }}
+          commit_username: 'Github Action Bot'
+          commit_email: github-action-bot@example.com
+          ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
 ```
