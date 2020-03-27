@@ -28,6 +28,7 @@ This action can publish an AUR package.
 
 ## Example usage
 
+```
 uses: aur-publish-docker-action@v1
 with:
   package-name: my-awesome-package
@@ -35,3 +36,4 @@ with:
   commit-username: 'Github Action Bot'
   commit-email: github-action-bot@example.com
   ssh-private-key: {{ secrets.aur-ssh-private-key }}
+```
