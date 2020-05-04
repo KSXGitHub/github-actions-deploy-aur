@@ -44,7 +44,7 @@ makepkg --printsrcinfo > .SRCINFO || exit $?
 echo "------------- BUILD DONE ----------------"
 
 # Update aur
-git add PKGBUILD .SRCINFO || exit $?
+git add --force PKGBUILD .SRCINFO || exit $?
 git commit --allow-empty  -m "Update to $PKGVER" || exit $?
 git push --force || exit $?
 
