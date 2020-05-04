@@ -1,13 +1,16 @@
 # action.yml
 name: 'AUR publish docker'
 description: 'Publish an AUR package'
-author: guumaster
+author: KSXGitHub
 branding:
   color: green
   icon: upload
 inputs:
-  package_name:
+  pkgname:
     description: 'AUR package name'
+    required: true
+  pkgver:
+    description: 'AUR package version'
     required: true
   commit_username:
     description: 'The username to use when creating the new commit.'
@@ -23,4 +26,4 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.package_name }} ${{ inputs.commit_username }} ${{ inputs.commit_email }} ${{ inputs.ssh_private_key }}
+    - ${{ inputs.pkgname }} ${{ inputs.pkgver }} ${{ inputs.commit_username }} ${{ inputs.commit_email }} ${{ inputs.ssh_private_key }}
