@@ -1,5 +1,5 @@
 # action.yml
-name: 'AUR publish docker'
+name: 'Publish AUR package'
 description: 'Publish an AUR package'
 author: KSXGitHub
 branding:
