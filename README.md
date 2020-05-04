@@ -2,6 +2,10 @@
 
 This action can publish an AUR package.
 
+## Requirements
+
+This action only modifies existing AUR package and publish it. Make sure targeted package exists first.
+
 ## Inputs
 
 ### `pkgname`
