@@ -42,7 +42,8 @@ jobs:
       - name: Publish AUR package
         uses: KSXGitHub/github-actions-deploy-aur@master
         with:
-          package_name: my-awesome-package
+          pkgname: my-awesome-package
+          pkgver: 1.2.3
           commit_username: 'Github Action Bot'
           commit_email: github-action-bot@example.com
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
