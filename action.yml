@@ -6,20 +6,8 @@ branding:
   color: blue
   icon: package
 inputs:
-  pkgname:
-    description: 'AUR package name'
-    required: true
-  pkgver:
-    description: 'AUR package version'
-    required: true
-  commit_username:
-    description: 'The username to use when creating the new commit.'
-    required: true
-  commit_email:
-    description: 'The email to use when creating the new commit.'
-    required: true
-  ssh_private_key:
-    description: 'Your private key with access to AUR package.'
+  filename:
+    description: File to import
     required: true
 
 runs:
