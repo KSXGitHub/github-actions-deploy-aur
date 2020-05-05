@@ -21,4 +21,3 @@ USER builder
 WORKDIR /home/builder
 
 ENTRYPOINT ["/entrypoint.sh"]
-
