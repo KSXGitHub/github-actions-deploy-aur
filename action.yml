@@ -3,8 +3,8 @@ name: 'Publish AUR package'
 description: 'Publish an AUR package'
 author: KSXGitHub
 branding:
-  color: green
-  icon: upload
+  color: blue
+  icon: package
 inputs:
   pkgname:
     description: 'AUR package name'
