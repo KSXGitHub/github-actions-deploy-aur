@@ -1,0 +1,16 @@
+name: Test Action
+
+on:
+  - push
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Main Action
+        uses: ./
+        with:
+          filename: input-file.txt
