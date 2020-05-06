@@ -8,15 +8,13 @@ COMMIT_USERNAME=$INPUT_COMMIT_USERNAME
 COMMIT_EMAIL=$INPUT_COMMIT_EMAIL
 SSH_PRIVATE_KEY=$INPUT_SSH_PRIVATE_KEY
 
-export HOME=/root
-
 echo "---------------- AUR Package version $PKGNAME/$PKGVER ----------------"
 
-ssh-keyscan -t ed25519 aur.archlinux.org >> $HOME/.ssh/known_hosts
+ssh-keyscan -t ed25519 aur.archlinux.org >> ~/.ssh/known_hosts
 
-echo -e "${SSH_PRIVATE_KEY//_/\\n}" > $HOME/.ssh/aur
+echo -e "${SSH_PRIVATE_KEY//_/\\n}" > ~/.ssh/aur
 
-chmod 600 $HOME/.ssh/aur*
+chmod 600 ~/.ssh/aur*
 
 git config --global user.name "$COMMIT_USERNAME"
 git config --global user.email "$COMMIT_EMAIL"
