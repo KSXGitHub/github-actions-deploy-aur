@@ -30,4 +30,4 @@ makepkg --printsrcinfo > /local-repo/.SRCINFO
 
 git add -fv PKGBUILD .SRCINFO
 git commit --allow-empty -m "$commit_message"
-git push --force
+git push -fv
