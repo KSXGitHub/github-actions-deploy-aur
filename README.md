@@ -49,8 +49,8 @@ jobs:
         with:
           pkgname: my-awesome-package
           pkgbuild: ./PKGBUILD
-          commit_username: 'Github Action Bot'
-          commit_email: github-action-bot@example.com
+          commit_username: ${{ secrets.AUR_USERNAME }}
+          commit_email: ${{ secrets.AUR_EMAIL }}
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           commit_message: Update AUR package
 ```
