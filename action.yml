@@ -22,9 +22,13 @@ inputs:
     description: 'Your private key with access to AUR package.'
     required: true
   commit_message:
-    description: 'Commit message to use when creating the new commit.'
+    description: 'Commit message to use when creating the new commit'
     required: false
     default: 'Update PKGBUILD and .SRCINFO with GitHub Actions'
+  ssh_keyscan_types:
+    description: 'Comma-separated list of types to use when adding aur.archlinux.org to known hosts'
+    required: false
+    default: 'rsa,dsa,ecdsa,ed25519'
 runs:
   using: 'docker'
   image: 'Dockerfile'

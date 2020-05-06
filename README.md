@@ -28,6 +28,10 @@ GitHub Actions to publish AUR package.
 
 **Optional** Commit message to use when creating the new commit.
 
+### `ssh_keyscan_types`
+
+**Optional** Comma-separated list of types to use when adding aur.archlinux.org to known hosts.
+
 ## Example usage
 
 ```yaml
@@ -53,6 +57,7 @@ jobs:
           commit_email: ${{ secrets.AUR_EMAIL }}
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           commit_message: Update AUR package
+          ssh_keyscan_types: rsa,dsa,ecdsa,ed25519
 ```
 
 **Tip:** To create secrets (such as `secrets.AUR_USERNAME`, `secrets.AUR_EMAIL`, and `secrets.AUR_SSH_PRIVATE_KEY` above), go to `$YOUR_GITHUB_REPO_URL/settings/secrets`. [Read this for more information](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets).
