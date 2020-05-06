@@ -21,7 +21,6 @@ inputs:
   ssh_private_key:
     description: 'Your private key with access to AUR package.'
     required: true
-
 runs:
   using: 'docker'
   image: 'Dockerfile'
