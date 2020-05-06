@@ -27,10 +27,8 @@ echo 'Configuring git...'
 git config --global user.name "$commit_username"
 git config --global user.email "$commit_email"
 
-repo_url="ssh://aur@aur.archlinux.org/${pkgname}.git"
-
-echo "Cloning $repo_url into /local-repo..."
-git clone "$repo_url" /local-repo
+echo "Cloning AUR package into /local-repo..."
+git clone "https://aur.archlinux.org/{pkgname}.git" /local-repo
 
 echo "Copying PKGBUILD from $pkgbuild to /local-repo"
 cp -v "$pkgbuild" /local-repo/PKGBUILD
@@ -40,6 +38,7 @@ makepkg --printsrcinfo > /local-repo/.SRCINFO
 
 echo "Publishing..."
 cd /local-repo
+git remote add aur "ssh://aur@aur.archlinux.org/${pkgname}.git"
 git add -fv PKGBUILD .SRCINFO
 git commit --allow-empty -m "$commit_message"
-git push -fv origin master
+git push -fv aur master
