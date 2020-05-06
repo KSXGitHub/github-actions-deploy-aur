@@ -32,9 +32,6 @@ echo "------------- BUILDING PKG $PKGNAME ----------------"
 sed -i "s/pkgver=.*$/pkgver=$PKGVER/" PKGBUILD
 sed -i "s/sha256sums=.*$/$(makepkg -g 2>/dev/null)/" PKGBUILD
 
-# Test build
-makepkg -c
-
 # Update srcinfo
 makepkg --printsrcinfo > .SRCINFO
 
