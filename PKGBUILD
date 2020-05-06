@@ -1,6 +1,6 @@
 # Maintainer: Hoàng Văn Khải <hvksmr1996@gmail.com>
 
-pkgname=test-publishing-aur-package-using-github-action-0
+pkgname=test-publishing-aur-package-using-github-action-a
 pkgver=0.0.0
 pkgrel=0
 pkgdesc='This is a test package. It serves no other purposes.'

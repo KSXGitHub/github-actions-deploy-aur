@@ -12,7 +12,7 @@ jobs:
       - name: Publish AUR package
         uses: ./
         with:
-          pkgname: test-publishing-aur-package-using-github-action-0
+          pkgname: test-publishing-aur-package-using-github-action-a
           pkgbuild: ./PKGBUILD
           commit_username: ${{ secrets.TEST_AUR_USERNAME }}
           commit_email: ${{ secrets.TEST_AUR_EMAIL }}
