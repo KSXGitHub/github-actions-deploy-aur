@@ -18,7 +18,7 @@ chmod -v 600 ~/.ssh/*
 
 echo 'Adding aur.archlinux.org to known hosts...'
 ssh-keygen -v -R aur.archlinux.org
-ssh-keyscan -t "$ssh_keyscan_types" aur.archlinux.org >> ~/.ssh/known_hosts
+ssh-keyscan -v -t "$ssh_keyscan_types" aur.archlinux.org >> ~/.ssh/known_hosts
 
 echo 'Importing private key...'
 echo "$ssh_private_key" > ~/.ssh/aur
