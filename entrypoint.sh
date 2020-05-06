@@ -28,7 +28,7 @@ git config --global user.name "$commit_username"
 git config --global user.email "$commit_email"
 
 echo "Cloning AUR package into /local-repo..."
-git clone "https://aur.archlinux.org/{pkgname}.git" /local-repo
+git clone "https://aur.archlinux.org/${pkgname}.git" /local-repo
 
 echo "Copying PKGBUILD from $pkgbuild to /local-repo"
 cp -v "$pkgbuild" /local-repo/PKGBUILD
