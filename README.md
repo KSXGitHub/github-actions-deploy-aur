@@ -1,12 +1,12 @@
 # Publish AUR packages
 
-This action can publish an AUR package.
+GitHub Actions to publish AUR package.
 
 ## Inputs
 
 ### `pkgname`
 
-**Required** The AUR package name you want to update.
+**Required** AUR package name.
 
 ### `pkgbuild`
 

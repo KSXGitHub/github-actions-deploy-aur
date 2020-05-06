@@ -13,10 +13,10 @@ inputs:
     description: 'Path to PKGBUILD file'
     required: true
   commit_username:
-    description: 'The username to use when creating the new commit.'
+    description: 'The username to use when creating the new commit'
     required: true
   commit_email:
-    description: 'The email to use when creating the new commit.'
+    description: 'The email to use when creating the new commit'
     required: true
   ssh_private_key:
     description: 'Your private key with access to AUR package.'
