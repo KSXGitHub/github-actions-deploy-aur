@@ -9,7 +9,9 @@ inputs:
   filename:
     description: File to import
     required: true
-
+  paragraph:
+    description: A paragraph
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'

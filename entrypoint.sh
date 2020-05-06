@@ -10,3 +10,6 @@ ls .
 
 echo "Content of $INPUT_FILENAME"
 cat "$INPUT_FILENAME"
+
+echo "Content of inputs.paragraph"
+echo "$INPUT_PARAGRAPH"
