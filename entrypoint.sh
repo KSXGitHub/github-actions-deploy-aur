@@ -8,6 +8,7 @@ commit_username=$INPUT_COMMIT_USERNAME
 commit_email=$INPUT_COMMIT_EMAIL
 ssh_private_key=$INPUT_SSH_PRIVATE_KEY
 commit_message=$INPUT_COMMIT_MESSAGE
+ssh_keyscan_types=$INPUT_SSH_KEYSCAN_TYPES
 
 echo 'Initializing ssh directory...'
 mkdir -pv ~/.ssh
@@ -16,7 +17,7 @@ cp -v /ssh_config ~/.ssh/config
 chmod -v 600 ~/.ssh/*
 
 echo 'Adding aur.archlinux.org to known hosts...'
-ssh-keyscan -t ed25519 aur.archlinux.org >> ~/.ssh/known_hosts
+ssh-keyscan -t "$ssh_keyscan_types" aur.archlinux.org >> ~/.ssh/known_hosts
 
 echo 'Importing private key...'
 echo "$ssh_private_key" > ~/.ssh/aur
