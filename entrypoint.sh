@@ -22,9 +22,6 @@ ssh-keyscan -v -t "$ssh_keyscan_types" aur.archlinux.org >> ~/.ssh/known_hosts
 echo 'Importing private key...'
 echo "$ssh_private_key" > ~/.ssh/aur
 chmod 600 ~/.ssh/aur*
-/usr/bin/sshd
-ssh_agent=$(eval "$(ssh-agent)" | awk '{ print $3 }')
-ssh-add -v ~/.ssh/*
 
 echo 'Configuring git...'
 git config --global user.name "$commit_username"
@@ -46,6 +43,3 @@ cd /local-repo
 git add -fv PKGBUILD .SRCINFO
 git commit --allow-empty -m "$commit_message"
 git push -fv origin master
-
-echo 'Finalizing...'
-kill "$ssh_agent"
