@@ -45,6 +45,3 @@ cd /local-repo
 git add -fv PKGBUILD .SRCINFO
 git commit --allow-empty -m "$commit_message"
 git push -fv origin master
-
-echo 'Finalizing...'
-kill --verbose "$ssh_agent"
