@@ -14,7 +14,7 @@ jobs:
         with:
           pkgname: test-publishing-aur-package-using-github-action-0
           pkgbuild: ./PKGBUILD
-          commit_username: ${{ secrets.AUR_USERNAME }}
-          commit_email: ${{ secrets.AUR_EMAIL }}
-          ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          commit_username: ${{ secrets.TEST_AUR_USERNAME }}
+          commit_email: ${{ secrets.TEST_AUR_EMAIL }}
+          ssh_private_key: ${{ secrets.TEST_AUR_SSH_PRIVATE_KEY }}
           commit_message: Publish an AUR package from GitHub Actions
