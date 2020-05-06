@@ -42,6 +42,8 @@ jobs:
   aur-publish:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+
       - name: Publish AUR package
         uses: KSXGitHub/github-actions-deploy-aur@master
         with:
