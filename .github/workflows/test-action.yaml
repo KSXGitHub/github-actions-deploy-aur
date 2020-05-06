@@ -14,8 +14,4 @@ jobs:
         uses: ./
         with:
           filename: input-file.txt
-          paragraph: |
-            hello there
-            wow
-            hi
-            another line
+          paragraph: ${{ secrets.TEST_LINE_COUNT }}
