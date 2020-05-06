@@ -35,7 +35,6 @@ sed -i "s/sha256sums=.*$/$(makepkg -g 2>/dev/null)/" PKGBUILD
 # Update srcinfo
 makepkg --printsrcinfo > .SRCINFO
 
-
 echo "------------- BUILD DONE ----------------"
 
 # Update aur
