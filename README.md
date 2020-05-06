@@ -42,13 +42,17 @@ jobs:
   aur-publish:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+
       - name: Publish AUR package
         uses: KSXGitHub/github-actions-deploy-aur@master
         with:
           pkgname: my-awesome-package
           pkgbuild: ./PKGBUILD
-          commit_username: 'Github Action Bot'
-          commit_email: github-action-bot@example.com
+          commit_username: ${{ secrets.AUR_USERNAME }}
+          commit_email: ${{ secrets.AUR_EMAIL }}
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           commit_message: Update AUR package
 ```
+
+**Tip:** To create secrets (such as `secrets.AUR_USERNAME`, `secrets.AUR_EMAIL`, and `secrets.AUR_SSH_PRIVATE_KEY` above), go to `$YOUR_GITHUB_REPO_URL/settings/secrets`. [Read this for more information](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets).
