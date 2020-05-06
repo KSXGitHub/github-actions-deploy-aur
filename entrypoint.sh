@@ -16,7 +16,7 @@ ssh-keyscan -t ed25519 aur.archlinux.org >> $HOME/.ssh/known_hosts
 
 echo -e "${SSH_PRIVATE_KEY//_/\\n}" > $HOME/.ssh/aur
 
-chmod 600 $HOME/.ssh/aur* || exit $?
+chmod 600 $HOME/.ssh/aur*
 
 git config --global user.name "$COMMIT_USERNAME"
 git config --global user.email "$COMMIT_EMAIL"
@@ -26,8 +26,8 @@ REPO_URL="ssh://aur@aur.archlinux.org/${PKGNAME}.git"
 echo "---------------- $REPO_URL ----------------"
 
 cd /tmp
-git clone "$REPO_URL" || exit $?
-cd "$PKGNAME" || exit $?
+git clone "$REPO_URL"
+cd "$PKGNAME"
 
 echo "------------- BUILDING PKG $PKGNAME ----------------"
 
@@ -35,17 +35,17 @@ sed -i "s/pkgver=.*$/pkgver=$PKGVER/" PKGBUILD
 sed -i "s/sha256sums=.*$/$(makepkg -g 2>/dev/null)/" PKGBUILD
 
 # Test build
-makepkg -c || exit $?
+makepkg -c
 
 # Update srcinfo
-makepkg --printsrcinfo > .SRCINFO || exit $?
+makepkg --printsrcinfo > .SRCINFO
 
 
 echo "------------- BUILD DONE ----------------"
 
 # Update aur
-git add --force PKGBUILD .SRCINFO || exit $?
-git commit --allow-empty  -m "Update to $PKGVER" || exit $?
-git push --force || exit $?
+git add --force PKGBUILD .SRCINFO
+git commit --allow-empty  -m "Update to $PKGVER"
+git push --force
 
 echo "------------- PUBLISH DONE ----------------"
