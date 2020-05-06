@@ -17,5 +17,3 @@ jobs:
           commit_username: ${{ secrets.TEST_AUR_USERNAME }}
           commit_email: ${{ secrets.TEST_AUR_EMAIL }}
           ssh_private_key: ${{ secrets.TEST_AUR_SSH_PRIVATE_KEY }}
-          commit_message: Publish an AUR package from GitHub Actions
-          ssh_keyscan_types: rsa
