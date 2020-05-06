@@ -22,7 +22,6 @@ ssh-keyscan -v -t "$ssh_keyscan_types" aur.archlinux.org >> ~/.ssh/known_hosts
 echo 'Importing private key...'
 echo "$ssh_private_key" > ~/.ssh/aur
 chmod 600 ~/.ssh/aur*
-ssh_agent=$(eval "$(ssh-agent -s)" | awk '{ print $3 }')
 ssh-add -v ~/.ssh/*
 
 echo 'Configuring git...'
