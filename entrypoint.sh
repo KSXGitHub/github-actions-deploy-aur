@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2024
 
 set -o errexit -o pipefail -o nounset
 
@@ -34,7 +35,7 @@ echo "Copying PKGBUILD from $pkgbuild to /local-repo"
 cp -v "$pkgbuild" /local-repo/PKGBUILD
 
 echo "Updating .SRCINFO"
-makepkg --printsrcinfo > /local-repo/.SRCINFO
+sudo makepkg --printsrcinfo > /local-repo/.SRCINFO
 
 echo "Publishing..."
 cd /local-repo
