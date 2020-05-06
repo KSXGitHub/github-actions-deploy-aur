@@ -2,7 +2,7 @@ FROM archlinux/base
 
 RUN pacman -Sy && \
     pacman -Sy --noconfirm openssh \
-      git fakeroot binutils go-pie gcc awk binutils xz \
+      git fakeroot binutils gcc awk binutils xz \
       libarchive bzip2 coreutils file findutils \
       gettext grep gzip sed ncurses
 
