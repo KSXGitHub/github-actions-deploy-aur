@@ -2,19 +2,15 @@
 
 This action can publish an AUR package.
 
-## Requirements
-
-This action only modifies existing AUR package and publish it. Make sure targeted package exists first.
-
 ## Inputs
 
 ### `pkgname`
 
 **Required** The AUR package name you want to update.
 
-### `pkgver`
+### `pkgbuild`
 
-**Required** The AUR package version you want to update.
+**Required** Path to PKGBUILD file.
 
 ### `commit_username`
 
@@ -28,6 +24,9 @@ This action only modifies existing AUR package and publish it. Make sure targete
 
 **Required** Your private key with access to AUR package.
 
+### `commit_message`
+
+**Optional** Commit message to use when creating the new commit.
 
 ## Example usage
 
@@ -47,12 +46,9 @@ jobs:
         uses: KSXGitHub/github-actions-deploy-aur@master
         with:
           pkgname: my-awesome-package
-          pkgver: 1.2.3
+          pkgbuild: ./PKGBUILD
           commit_username: 'Github Action Bot'
           commit_email: github-action-bot@example.com
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          commit_message: Update AUR package
 ```
-
-## Thanks
-
-This repository is a fork of https://github.com/guumaster/aur-publish-docker-action.git
