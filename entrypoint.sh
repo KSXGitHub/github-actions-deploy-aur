@@ -32,6 +32,7 @@ echo "Updating .SRCINFO"
 makepkg --printsrcinfo > /local-repo/.SRCINFO
 
 echo "Publishing..."
+cd /local-repo
 git add -fv PKGBUILD .SRCINFO
 git commit --allow-empty -m "$commit_message"
 git push -fv
