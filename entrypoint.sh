@@ -8,7 +8,7 @@ COMMIT_USERNAME=$INPUT_COMMIT_USERNAME
 COMMIT_EMAIL=$INPUT_COMMIT_EMAIL
 SSH_PRIVATE_KEY=$INPUT_SSH_PRIVATE_KEY
 
-export HOME=/home/builder
+export HOME=/root
 
 echo "---------------- AUR Package version $PKGNAME/$PKGVER ----------------"
 
