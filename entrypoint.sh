@@ -11,7 +11,7 @@ commit_message=$INPUT_COMMIT_MESSAGE
 
 ssh-keyscan -t ed25519 aur.archlinux.org >> ~/.ssh/known_hosts
 
-echo -e "${ssh_private_key//_/\\n}" > ~/.ssh/aur
+echo "$ssh_private_key" > ~/.ssh/aur
 
 chmod 600 ~/.ssh/aur*
 
