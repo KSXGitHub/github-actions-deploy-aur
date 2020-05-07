@@ -19,6 +19,15 @@ echo 'Importing private key...'
 printf %s "$ssh_private_key" > ~/.ssh/aur
 chmod -vR 600 ~/.ssh/aur*
 
+echo 'INSPECT'
+echo File ~/.ssh/aur
+echo 'Lines of keys:' "$(wc -l ~/.ssh/aur)"
+
+echo ls ~/.ssh
+ls ~/ssh
+
+exit 33
+
 echo 'Configuring git...'
 git config --global user.name "$commit_username"
 git config --global user.email "$commit_email"
