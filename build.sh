@@ -17,20 +17,11 @@ ssh-keyscan -v -t "$ssh_keyscan_types" aur.archlinux.org >> ~/.ssh/known_hosts
 
 echo 'Importing private key...'
 echo "$ssh_private_key" > ~/.ssh/aur
+ssh-keygen -vy -f ~/.ssh/aur > ~/.ssh/aur.pub
 chmod -vR 600 ~/.ssh/aur*
 
-echo 'INSPECT'
-echo File ~/.ssh/aur
-echo 'Lines:' "$(wc -l ~/.ssh/aur)"
-echo 'Chars:' "$(wc -m ~/.ssh/aur)"
-
-echo ls ~/.ssh
-ls ~/.ssh
-
-echo 'Checksums...'
+echo 'Checksums of SSH keys...'
 sha512sum ~/.ssh/aur ~/.ssh/aur.pub
-
-exit 33
 
 echo 'Configuring git...'
 git config --global user.name "$commit_username"
