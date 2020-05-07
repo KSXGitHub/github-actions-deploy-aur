@@ -17,8 +17,8 @@ ssh-keyscan -v -t "$ssh_keyscan_types" aur.archlinux.org >> ~/.ssh/known_hosts
 
 echo 'Importing private key...'
 echo "$ssh_private_key" > ~/.ssh/aur
-ssh-keygen -vy -f ~/.ssh/aur > ~/.ssh/aur.pub
 chmod -vR 600 ~/.ssh/aur*
+ssh-keygen -vy -f ~/.ssh/aur > ~/.ssh/aur.pub
 
 echo 'Checksums of SSH keys...'
 sha512sum ~/.ssh/aur ~/.ssh/aur.pub
