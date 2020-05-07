@@ -16,7 +16,7 @@ echo 'Adding aur.archlinux.org to known hosts...'
 ssh-keyscan -v -t "$ssh_keyscan_types" aur.archlinux.org >> ~/.ssh/known_hosts
 
 echo 'Importing private key...'
-printf %s "$ssh_private_key" > ~/.ssh/aur
+echo "$ssh_private_key" > ~/.ssh/aur
 chmod -vR 600 ~/.ssh/aur*
 
 echo 'INSPECT'
@@ -26,6 +26,9 @@ echo 'Chars:' "$(wc -m ~/.ssh/aur)"
 
 echo ls ~/.ssh
 ls ~/.ssh
+
+echo 'Checksums...'
+sha512sum ~/.ssh/aur ~/.ssh/aur.pub
 
 exit 33
 
