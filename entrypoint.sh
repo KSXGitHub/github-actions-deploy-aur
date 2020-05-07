@@ -6,6 +6,7 @@ pkgbuild=$INPUT_PKGBUILD
 
 echo 'Creating builder user...'
 useradd --create-home --shell /bin/bash builder
+passwd --delete builder
 
 echo 'Initializing ssh directory...'
 mkdir -pv /home/builder/.ssh
