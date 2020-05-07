@@ -31,7 +31,7 @@ echo 'Copying PKGBUILD...'
 cp -v /PKGBUILD ./
 
 echo "Updating .SRCINFO"
-sudo makepkg --printsrcinfo > .SRCINFO
+makepkg --printsrcinfo > .SRCINFO
 
 echo "Publishing..."
 git remote add aur "ssh://aur@aur.archlinux.org/${pkgname}.git"
