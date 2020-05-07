@@ -21,7 +21,8 @@ chmod -vR 600 ~/.ssh/aur*
 
 echo 'INSPECT'
 echo File ~/.ssh/aur
-echo 'Lines of keys:' "$(wc -l ~/.ssh/aur)"
+echo 'Lines:' "$(wc -l ~/.ssh/aur)"
+echo 'Chars:' "$(wc -m ~/.ssh/aur)"
 
 echo ls ~/.ssh
 ls ~/.ssh
