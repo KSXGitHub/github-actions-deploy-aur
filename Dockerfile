@@ -1,7 +1,7 @@
 FROM archlinux/base
 
 RUN pacman -Sy && \
-    pacman -Sy --noconfirm openssh sudo \
+    pacman -Sy --noconfirm --needed openssh sudo \
       git fakeroot binutils gcc awk binutils xz \
       libarchive bzip2 coreutils file findutils \
       gettext grep gzip sed ncurses util-linux
