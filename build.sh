@@ -17,7 +17,7 @@ ssh-keyscan -v -t "$ssh_keyscan_types" aur.archlinux.org >> ~/.ssh/known_hosts
 
 echo 'Importing private key...'
 printf %s "$ssh_private_key" > ~/.ssh/aur
-chmod -v 600 ~/.ssh/aur*
+chmod -vR 600 ~/.ssh/aur*
 
 echo 'Configuring git...'
 git config --global user.name "$commit_username"
