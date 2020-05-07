@@ -1,0 +1,34 @@
+# action.yml
+name: 'Publish AUR package'
+description: 'Publish an AUR package'
+author: KSXGitHub
+branding:
+  color: blue
+  icon: package
+inputs:
+  pkgname:
+    description: 'AUR package name'
+    required: true
+  pkgbuild:
+    description: 'Path to PKGBUILD file'
+    required: true
+  commit_username:
+    description: 'The username to use when creating the new commit'
+    required: true
+  commit_email:
+    description: 'The email to use when creating the new commit'
+    required: true
+  ssh_private_key:
+    description: 'Your private key with access to AUR package.'
+    required: true
+  commit_message:
+    description: 'Commit message to use when creating the new commit'
+    required: false
+    default: 'Update PKGBUILD and .SRCINFO with GitHub Actions'
+  ssh_keyscan_types:
+    description: 'Comma-separated list of types to use when adding aur.archlinux.org to known hosts'
+    required: false
+    default: 'rsa,dsa,ecdsa,ed25519'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
