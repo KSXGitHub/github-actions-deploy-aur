@@ -18,4 +18,4 @@ echo 'Copying PKGBUILD...'
 cp -r "$pkgbuild" /PKGBUILD
 
 echo 'Running build.sh...'
-exec runuser builder --login --command '/build.sh'
+exec runuser builder --command '/build.sh'
