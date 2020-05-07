@@ -24,7 +24,7 @@ echo File ~/.ssh/aur
 echo 'Lines of keys:' "$(wc -l ~/.ssh/aur)"
 
 echo ls ~/.ssh
-ls ~/ssh
+ls ~/.ssh
 
 exit 33
 
