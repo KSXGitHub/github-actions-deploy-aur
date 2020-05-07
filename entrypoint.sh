@@ -12,7 +12,7 @@ mkdir -pv /home/builder/.ssh
 touch /home/builder/.ssh/known_hosts
 cp -v /ssh_config /home/builder/.ssh/config
 chown -vR builder:builder /home/builder
-chmod -vR 600 ~/.ssh/*
+chmod -vR 600 /home/builder/.ssh/*
 
 echo 'Copying PKGBUILD...'
 cp -r "$pkgbuild" /PKGBUILD
