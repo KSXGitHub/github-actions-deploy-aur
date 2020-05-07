@@ -1,4 +1,4 @@
-# Publish AUR packages
+# Publish AUR package
 
 GitHub Actions to publish AUR package.
 
