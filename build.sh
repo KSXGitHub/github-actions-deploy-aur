@@ -23,9 +23,9 @@ echo 'Configuring git...'
 git config --global user.name "$commit_username"
 git config --global user.email "$commit_email"
 
-echo 'Cloning AUR package into /local-repo...'
-git clone "https://aur.archlinux.org/${pkgname}.git" /local-repo
-cd /local-repo
+echo 'Cloning AUR package into /tmp/local-repo...'
+git clone -v "https://aur.archlinux.org/${pkgname}.git" /tmp/local-repo
+cd /tmp/local-repo
 
 echo 'Copying PKGBUILD...'
 cp -v /PKGBUILD ./
