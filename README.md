@@ -68,6 +68,10 @@ jobs:
 
 [sane-fmt](https://github.com/KSXGitHub/sane-fmt) has a [workflow](https://github.com/KSXGitHub/sane-fmt/blob/c07ce4f09c0b8dfa902d28753ebb3800268183f5/.github/workflows/deploy.yaml) that builds and uploads executables to GitHub Release then generates PKGBUILD files for and use this very action to update [aur/sane-fmt](https://aur.archlinux.org/packages/sane-fmt) and [aur/sane-fmt-bin](https://aur.archlinux.org/packages/sane-fmt-bin).
 
+## Become a Patron
+
+[My Patreon Page](https://patreon.com/khai96_).
+
 ## License
 
 [MIT](https://git.io/JfWEM) © [Hoàng Văn Khải](https://github.com/KSXGitHub/)
