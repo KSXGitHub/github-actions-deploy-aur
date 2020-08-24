@@ -1,6 +1,6 @@
 FROM archlinux/base
 
-RUN pacman -Syu && \
+RUN pacman -Syu --noconfirm && \
     pacman -S --noconfirm --needed --overwrite '*' \
       openssh sudo \
       git fakeroot binutils gcc awk binutils xz \
