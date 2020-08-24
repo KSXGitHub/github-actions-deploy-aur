@@ -1,7 +1,7 @@
 FROM archlinux/base
 
-RUN pacman -Syu --noconfirm && \
-    pacman -S --noconfirm --needed --overwrite '*' \
+RUN pacman -Syu --noconfirm
+RUN pacman -S --noconfirm --needed --overwrite '*' \
       openssh sudo \
       git fakeroot binutils gcc awk binutils xz \
       libarchive bzip2 coreutils file findutils \
