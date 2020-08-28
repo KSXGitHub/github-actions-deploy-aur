@@ -68,6 +68,8 @@ jobs:
 
 [sane-fmt](https://github.com/KSXGitHub/sane-fmt) has a [workflow](https://github.com/KSXGitHub/sane-fmt/blob/c07ce4f09c0b8dfa902d28753ebb3800268183f5/.github/workflows/deploy.yaml) that builds and uploads executables to GitHub Release then generates PKGBUILD files for and use this very action to update [aur/sane-fmt](https://aur.archlinux.org/packages/sane-fmt) and [aur/sane-fmt-bin](https://aur.archlinux.org/packages/sane-fmt-bin).
 
+[pretty-exec](https://github.com/KSXGitHub/pretty-exec) has a [workflow](https://github.com/KSXGitHub/pretty-exec/blob/67473cd85f6aa278367e30fce9e41b4e54e4cb82/.github/workflows/deploy.yaml) that builds and uploads executables to GitHub Release then generates PKGBUILD files for and use this very action to update [aur/pretty-exec](https://aur.archlinux.org/packages/pretty-exec/) and [aur/pretty-exec-bin](https://aur.archlinux.org/packages/pretty-exec-bin/).
+
 ## Become a Patron
 
 [My Patreon Page](https://patreon.com/khai96_).
