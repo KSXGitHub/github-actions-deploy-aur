@@ -1,4 +1,3 @@
-# action.yml
 name: 'Publish AUR package'
 description: 'Publish an AUR package'
 author: KSXGitHub
