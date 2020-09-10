@@ -55,5 +55,5 @@ if [[ $allow_empty_commits == 'true' ]]; then
 else
     git diff-index --quiet HEAD || git commit -m "$commit_message" # use `git diff-index --quiet HEAD ||` to avoid error
 fi
-git push -fv aur master
+git push --force-with-lease -v aur master
 echo '::endgroup::'
