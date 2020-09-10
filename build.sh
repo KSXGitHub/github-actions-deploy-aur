@@ -8,6 +8,7 @@ commit_username=$INPUT_COMMIT_USERNAME
 commit_email=$INPUT_COMMIT_EMAIL
 ssh_private_key=$INPUT_SSH_PRIVATE_KEY
 commit_message=$INPUT_COMMIT_MESSAGE
+allow_empty_commits=$INPUT_ALLOW_EMPTY_COMMITS
 ssh_keyscan_types=$INPUT_SSH_KEYSCAN_TYPES
 
 export HOME=/home/builder
@@ -49,6 +50,10 @@ echo '::endgroup::'
 echo '::group::Publishing'
 git remote add aur "ssh://aur@aur.archlinux.org/${pkgname}.git"
 git add -fv PKGBUILD .SRCINFO
-git commit --allow-empty -m "$commit_message"
+if [[ $allow_empty_commits == 'true' ]]; then
+    git commit --allow-empty -m "$commit_message"
+else
+    git diff-index --quiet HEAD || git commit -m "$commit_message" # use `git diff-index --quiet HEAD ||` to avoid error
+fi
 git push -fv aur master
 echo '::endgroup::'

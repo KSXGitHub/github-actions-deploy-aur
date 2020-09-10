@@ -28,6 +28,10 @@ GitHub Actions to publish AUR package.
 
 **Optional** Commit message to use when creating the new commit.
 
+### `allow_empty_commits`
+
+**Optional** Allow empty commits, i.e. commits with no change. The default value is `true`.
+
 ### `ssh_keyscan_types`
 
 **Optional** Comma-separated list of types to use when adding aur.archlinux.org to known hosts.
