@@ -24,6 +24,10 @@ inputs:
     description: 'Commit message to use when creating the new commit'
     required: false
     default: 'Update PKGBUILD and .SRCINFO with GitHub Actions'
+  allow_empty_commits:
+    description: 'Allow empty commits, i.e. commits with no change.'
+    required: false
+    default: 'true'
   ssh_keyscan_types:
     description: 'Comma-separated list of types to use when adding aur.archlinux.org to known hosts'
     required: false
