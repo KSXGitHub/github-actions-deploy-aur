@@ -53,7 +53,10 @@ git add -fv PKGBUILD .SRCINFO
 case "$allow_empty_commits" in
 true) git commit --allow-empty -m "$commit_message" ;;
 false) git diff-index --quiet HEAD || git commit -m "$commit_message" ;; # use `git diff-index --quiet HEAD ||` to avoid error
-*) echo 'The option "allow_empty_commits" should be either "true" or "false".' && false ;;
+*)
+  echo "::error::Invalid Value: inputs.allow_empty_commits is neither 'true' nor 'false': '$allow_empty_commits'"
+  exit 2
+  ;;
 esac
 git push --force-with-lease -v aur master
 echo '::endgroup::'
