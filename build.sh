@@ -9,6 +9,7 @@ commit_email=$INPUT_COMMIT_EMAIL
 ssh_private_key=$INPUT_SSH_PRIVATE_KEY
 commit_message=$INPUT_COMMIT_MESSAGE
 allow_empty_commits=$INPUT_ALLOW_EMPTY_COMMITS
+force_push=$INPUT_FORCE_PUSH
 ssh_keyscan_types=$INPUT_SSH_KEYSCAN_TYPES
 
 export HOME=/home/builder
@@ -62,5 +63,14 @@ false)
   exit 2
   ;;
 esac
-git push --force-with-lease -v aur master
+force_push_flag=''
+case "$force_push" in
+true) force_push_flag='--force' ;;
+false) force_push_flag='--force-with-lease' ;;
+*)
+  echo "::error::Invalid Value: inputs.force_push is neither 'true' nor 'false': '$force_push'"
+  exit 3
+  ;;
+esac
+git push "$force_push_flag" -v aur master
 echo '::endgroup::'

@@ -32,6 +32,10 @@ GitHub Actions to publish AUR package.
 
 **Optional** Allow empty commits, i.e. commits with no change. The default value is `true`.
 
+## `force_push`
+
+**Optional** Use `--force` when push to the AUR. The default value is `false`.
+
 ### `ssh_keyscan_types`
 
 **Optional** Comma-separated list of types to use when adding aur.archlinux.org to known hosts.

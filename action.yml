@@ -28,6 +28,10 @@ inputs:
     description: 'Allow empty commits, i.e. commits with no change.'
     required: false
     default: 'true'
+  force_push:
+    description: 'Use --force when push to the AUR.'
+    required: false
+    default: 'false'
   ssh_keyscan_types:
     description: 'Comma-separated list of types to use when adding aur.archlinux.org to known hosts'
     required: false
