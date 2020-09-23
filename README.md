@@ -32,7 +32,7 @@ GitHub Actions to publish AUR package.
 
 **Optional** Allow empty commits, i.e. commits with no change. The default value is `true`.
 
-## `force_push`
+### `force_push`
 
 **Optional** Use `--force` when push to the AUR. The default value is `false`.
 
