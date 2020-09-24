@@ -66,7 +66,7 @@ esac
 force_push_flag=''
 case "$force_push" in
 true) force_push_flag='--force' ;;
-false) force_push_flag='--force-with-lease' ;;
+false) force_push_flag='' ;;
 *)
   echo "::error::Invalid Value: inputs.force_push is neither 'true' nor 'false': '$force_push'"
   exit 3
