@@ -63,14 +63,16 @@ false)
   exit 2
   ;;
 esac
-force_push_flag=''
 case "$force_push" in
-true) force_push_flag='--force' ;;
-false) force_push_flag='' ;;
+true)
+  git push -v --force aur master
+  ;;
+false)
+  git push -v aur master
+  ;;
 *)
   echo "::error::Invalid Value: inputs.force_push is neither 'true' nor 'false': '$force_push'"
   exit 3
   ;;
 esac
-git push "$force_push_flag" -v aur master
 echo '::endgroup::'
