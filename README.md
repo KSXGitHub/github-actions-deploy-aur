@@ -57,7 +57,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Publish AUR package
-        uses: KSXGitHub/github-actions-deploy-aur@master
+        uses: KSXGitHub/github-actions-deploy-aur@<TAG>
         with:
           pkgname: my-awesome-package
           pkgbuild: ./PKGBUILD
@@ -67,6 +67,8 @@ jobs:
           commit_message: Update AUR package
           ssh_keyscan_types: rsa,dsa,ecdsa,ed25519
 ```
+
+**Note:** Replace `<TAG>` in the above code snippet with a tag of this repo.
 
 **Tip:** To create secrets (such as `secrets.AUR_USERNAME`, `secrets.AUR_EMAIL`, and `secrets.AUR_SSH_PRIVATE_KEY` above), go to `$YOUR_GITHUB_REPO_URL/settings/secrets`. [Read this for more information](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets).
 
