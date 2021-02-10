@@ -21,4 +21,9 @@ echo '::group::Copying PKGBUILD'
 cp -r "$pkgbuild" /PKGBUILD
 echo '::endgroup::'
 
+echo '::group::Make makepkg readable'
+chmod -v a+r /etc
+chmod -v a+r /etc/makepkg.conf
+echo '::endgroup::'
+
 exec runuser builder --command 'bash -l -c /build.sh'
