@@ -21,7 +21,7 @@ echo '::group::Copying PKGBUILD'
 cp -r "$pkgbuild" /PKGBUILD
 echo '::endgroup::'
 
-echo '::group::Make makepkg readable'
+echo '::group::Make sure that makepkg.conf is readable'
 chmod -v a+r /etc
 chmod -v a+r /etc/makepkg.conf
 echo '::endgroup::'
