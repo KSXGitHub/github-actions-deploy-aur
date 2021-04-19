@@ -80,6 +80,8 @@ jobs:
 
 [pretty-exec](https://github.com/KSXGitHub/pretty-exec) has a [workflow](https://github.com/KSXGitHub/pretty-exec/blob/67473cd85f6aa278367e30fce9e41b4e54e4cb82/.github/workflows/deploy.yaml) that builds and uploads executables to GitHub Release then generates PKGBUILD files for and use this very action to update [aur/pretty-exec](https://aur.archlinux.org/packages/pretty-exec/) and [aur/pretty-exec-bin](https://aur.archlinux.org/packages/pretty-exec-bin/).
 
+[build-fs-tree](https://github.com/KSXGitHub/build-fs-tree) has a [workflow](https://github.com/KSXGitHub/build-fs-tree/blob/24924d99ae5cd82f00ea62fe8abc1a187bea7a0b/.github/workflows/deploy.yaml) that builds and uploads executables to GitHub Release then generates PKGBUILD files for and use this very action to update [aur/build-fs-tree](https://aur.archlinux.org/packages/build-fs-tree/) and [aur/build-fs-tree-bin](https://aur.archlinux.org/packages/build-fs-tree-bin/).
+
 ## Become a Patron
 
 [My Patreon Page](https://patreon.com/khai96_).
