@@ -82,6 +82,8 @@ jobs:
 
 [build-fs-tree](https://github.com/KSXGitHub/build-fs-tree) has a [workflow](https://github.com/KSXGitHub/build-fs-tree/blob/24924d99ae5cd82f00ea62fe8abc1a187bea7a0b/.github/workflows/deploy.yaml) that builds and uploads executables to GitHub Release then generates PKGBUILD files for and use this very action to update [aur/build-fs-tree](https://aur.archlinux.org/packages/build-fs-tree/) and [aur/build-fs-tree-bin](https://aur.archlinux.org/packages/build-fs-tree-bin/).
 
+[strip-ansi-cli](https://github.com/KSXGitHub/strip-ansi-cli) has a [workflow](https://github.com/KSXGitHub/strip-ansi-cli/blob/f3de1cf4997bbc2efbf137f77325f12640c2e145/.github/workflows/deploy.yaml) that builds and uploads executables to GitHub Release then generates PKGBUILD files for and use this very action to update [aur/strip-ansi](https://aur.archlinux.org/packages/strip-ansi/) and [aur/strip-ansi-bin](https://aur.archlinux.org/packages/strip-ansi-bin/).
+
 ## Become a Patron
 
 [My Patreon Page](https://patreon.com/khai96_).
