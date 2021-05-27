@@ -12,6 +12,20 @@ allow_empty_commits=$INPUT_ALLOW_EMPTY_COMMITS
 force_push=$INPUT_FORCE_PUSH
 ssh_keyscan_types=$INPUT_SSH_KEYSCAN_TYPES
 
+assert_non_empty() {
+  name=$1
+  value=$2
+  if [[ -z "$value" ]]; then
+    echo "::error::Invalid Value: $name is empty." >&2
+    exit 1
+  fi
+}
+
+assert_non_empty inputs.pkgname "$pkgname"
+assert_non_empty inputs.commit_username "$commit_username"
+assert_non_empty inputs.commit_email "$commit_email"
+assert_non_empty inputs.ssh_private_key "$ssh_private_key"
+
 export HOME=/home/builder
 
 echo '::group::Adding aur.archlinux.org to known hosts'
