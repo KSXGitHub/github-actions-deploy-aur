@@ -84,6 +84,8 @@ jobs:
 
 [strip-ansi-cli](https://github.com/KSXGitHub/strip-ansi-cli) has a [workflow](https://github.com/KSXGitHub/strip-ansi-cli/blob/f3de1cf4997bbc2efbf137f77325f12640c2e145/.github/workflows/deploy.yaml) that builds and uploads executables to GitHub Release then generates PKGBUILD files for and use this very action to update [aur/strip-ansi](https://aur.archlinux.org/packages/strip-ansi/) and [aur/strip-ansi-bin](https://aur.archlinux.org/packages/strip-ansi-bin/).
 
+[parallel-disk-usage](https://github.com/KSXGitHub/parallel-disk-usage) has a [workflow](https://github.com/KSXGitHub/parallel-disk-usage/blob/a7fc0937a64d23ae848e44f7ecbf02aec64831e4/.github/workflows/deploy.yaml) that builds and uploads executables to GitHub Release then generates PKGBUILD files for and use this very action to update [aur/parallel-disk-usage](https://aur.archlinux.org/packages/parallel-disk-usage/) and [aur/parallel-disk-usage-bin](https://aur.archlinux.org/packages/parallel-disk-usage-bin/).
+
 ## Become a Patron
 
 [My Patreon Page](https://patreon.com/khai96_).
