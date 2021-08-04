@@ -65,14 +65,14 @@ echo '::group::Copying files into /tmp/local-repo'
 # shellcheck disable=SC2086
 # Ignore quote rule because we need to expand glob patterns to copy $assets
 {
-  echo "Copying " $assets
+  echo 'Copying' $assets
   cp -rt /tmp/local-repo/ $assets
 }
 echo '::endgroup::'
 
 echo '::group::Generating .SRCINFO'
 cd /tmp/local-repo
-makepkg --printsrcinfo > .SRCINFO
+makepkg --printsrcinfo >.SRCINFO
 echo '::endgroup::'
 
 echo '::group::Committing files to the repository'
