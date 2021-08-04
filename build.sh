@@ -4,6 +4,8 @@
 set -o errexit -o pipefail -o nounset
 
 pkgname=$INPUT_PKGNAME
+pkgbuild=$INPUT_PKGBUILD
+assets=$INPUT_ASSETS
 commit_username=$INPUT_COMMIT_USERNAME
 commit_email=$INPUT_COMMIT_EMAIL
 ssh_private_key=$INPUT_SSH_PRIVATE_KEY
@@ -22,11 +24,15 @@ assert_non_empty() {
 }
 
 assert_non_empty inputs.pkgname "$pkgname"
+assert_non_empty inputs.pkgbuild "$pkgbuild"
 assert_non_empty inputs.commit_username "$commit_username"
 assert_non_empty inputs.commit_email "$commit_email"
 assert_non_empty inputs.ssh_private_key "$ssh_private_key"
 
 export HOME=/home/builder
+
+# Ignore "." and ".." to prevent errors when glob pattern for assets matches hidden files
+GLOBIGNORE=".:.."
 
 echo '::group::Adding aur.archlinux.org to known hosts'
 ssh-keyscan -v -t "$ssh_keyscan_types" aur.archlinux.org >>~/.ssh/known_hosts
@@ -42,7 +48,7 @@ echo '::group::Checksums of SSH keys'
 sha512sum ~/.ssh/aur ~/.ssh/aur.pub
 echo '::endgroup::'
 
-echo '::group::Configuring git'
+echo '::group::Configuring Git'
 git config --global user.name "$commit_username"
 git config --global user.email "$commit_email"
 echo '::endgroup::'
@@ -51,20 +57,35 @@ echo '::group::Cloning AUR package into /tmp/local-repo'
 git clone -v "https://aur.archlinux.org/${pkgname}.git" /tmp/local-repo
 echo '::endgroup::'
 
-echo '::group::Generating PKGBUILD and .SRCINFO'
-cd /tmp/local-repo
-
-echo 'Copying PKGBUILD...'
-cp -v /PKGBUILD ./
-
-echo "Updating .SRCINFO"
-makepkg --printsrcinfo >.SRCINFO
-
+echo '::group::Copying files into /tmp/local-repo'
+{
+  echo "Copying $pkgbuild"
+  cp -r "$pkgbuild" /tmp/local-repo/
+}
+# shellcheck disable=SC2086
+# Ignore quote rule because we need to expand glob patterns to copy $assets
+{
+  echo "Copying " $assets
+  cp -rt /tmp/local-repo/ $assets
+}
 echo '::endgroup::'
 
-echo '::group::Publishing'
-git remote add aur "ssh://aur@aur.archlinux.org/${pkgname}.git"
-git add -fv PKGBUILD .SRCINFO
+echo '::group::Generating .SRCINFO'
+cd /tmp/local-repo
+makepkg --printsrcinfo > .SRCINFO
+echo '::endgroup::'
+
+echo '::group::Committing files to the repository'
+if [[ -z "$assets" ]]; then
+  # When $assets are not set, we can add just PKGBUILD and .SRCINFO
+  # This is to prevent unintended behaviour and maintain backwards compatibility
+  git add -fv PKGBUILD .SRCINFO
+else
+  # We cannot just re-use $assets because it contains absolute paths outside repository
+  # But we can just add all files in the repository which should also include all $assets
+  git add --all
+fi
+
 case "$allow_empty_commits" in
 true)
   git commit --allow-empty -m "$commit_message"
@@ -77,6 +98,10 @@ false)
   exit 2
   ;;
 esac
+echo '::endgroup::'
+
+echo '::group::Publishing the repository'
+git remote add aur "ssh://aur@aur.archlinux.org/${pkgname}.git"
 case "$force_push" in
 true)
   git push -v --force aur master
