@@ -64,10 +64,10 @@ echo '::group::Copying files into /tmp/local-repo'
 }
 # shellcheck disable=SC2086
 # Ignore quote rule because we need to expand glob patterns to copy $assets
-{
+if [[ -n "$assets" ]]; then
   echo 'Copying' $assets
   cp -rt /tmp/local-repo/ $assets
-}
+fi
 echo '::endgroup::'
 
 echo '::group::Generating .SRCINFO'
