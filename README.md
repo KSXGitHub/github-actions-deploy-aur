@@ -45,6 +45,10 @@ Glob patterns will be expanded by bash when copying the files to the repository.
 
 **Optional** Comma-separated list of types to use when adding aur.archlinux.org to known hosts.
 
+### `update_pkgver`
+
+**Optional** Run `makepkg -od` to update `pkgver`. Requires that the `pkgver()` function defined in the `PKGBUILD` file doesn't required any dependencies other than git. The default value is `false`.
+
 ## Example usage
 
 ```yaml

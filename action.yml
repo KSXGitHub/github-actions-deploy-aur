@@ -40,6 +40,10 @@ inputs:
     description: 'Comma-separated list of types to use when adding aur.archlinux.org to known hosts'
     required: false
     default: 'rsa,dsa,ecdsa,ed25519'
+  update_pkgver:
+    description: "Run `makepkg -od` to update `pkgver`. Requires that the `pkgver()` function defined in the `PKGBUILD` file doesn't required any dependencies other than git"
+    required: false
+    default: 'false'
 runs:
   using: 'docker'
   image: 'Dockerfile'
