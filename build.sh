@@ -23,7 +23,6 @@ assert_non_empty() {
   fi
 }
 
-assert_non_empty inputs.pkgname "$pkgname"
 assert_non_empty inputs.pkgbuild "$pkgbuild"
 assert_non_empty inputs.commit_username "$commit_username"
 assert_non_empty inputs.commit_email "$commit_email"
@@ -51,6 +50,25 @@ echo '::endgroup::'
 echo '::group::Configuring Git'
 git config --global user.name "$commit_username"
 git config --global user.email "$commit_email"
+echo '::endgroup::'
+
+echo '::group::Getting pkgname'
+if [[ -z "$pkgname" ]]; then
+  echo 'Extracting pkgname from PKGBUILD'
+  
+  mkdir -p /tmp/makepkg
+  cp "$pkgbuild" /tmp/makepkg/PKGBUILD
+  info=$(cd /tmp/makepkg; makepkg --printsrcinfo)
+
+  pattern='pkgname = ([a-z0-9@._+-]*)'
+  [[ "$info" =~ $pattern ]]
+
+  pkgname="${BASH_REMATCH[1]}"
+  echo "Got pkgname '$pkgname'"
+else
+  echo "Using pkgname '$pkgname' from argument"
+  assert_non_empty inputs.pkgname "$pkgname"
+fi
 echo '::endgroup::'
 
 echo '::group::Cloning AUR package into /tmp/local-repo'

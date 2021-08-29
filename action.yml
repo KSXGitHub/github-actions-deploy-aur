@@ -6,8 +6,8 @@ branding:
   icon: package
 inputs:
   pkgname:
-    description: 'AUR package name'
-    required: true
+    description: 'AUR package name, extracted from PKGBUILD if not specified'
+    required: false
   pkgbuild:
     description: 'Path to PKGBUILD file'
     required: true

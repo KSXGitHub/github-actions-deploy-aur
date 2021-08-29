@@ -6,7 +6,7 @@ GitHub Actions to publish AUR package.
 
 ### `pkgname`
 
-**Required** AUR package name.
+**Optional** AUR package name. If not specified the name will be extracted from the PKGBUILD file.
 
 ### `pkgbuild`
 
