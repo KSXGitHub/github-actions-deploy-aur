@@ -23,7 +23,6 @@ assert_non_empty() {
   fi
 }
 
-assert_non_empty inputs.pkgbuild "$pkgbuild"
 assert_non_empty inputs.commit_username "$commit_username"
 assert_non_empty inputs.commit_email "$commit_email"
 assert_non_empty inputs.ssh_private_key "$ssh_private_key"

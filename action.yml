@@ -10,7 +10,8 @@ inputs:
     required: false
   pkgbuild:
     description: 'Path to PKGBUILD file'
-    required: true
+    default: './PKGBUILD'
+    required: false
   assets:
     description: 'Newline-separated glob patterns for additional files to be added to the AUR repository'
     required: false
