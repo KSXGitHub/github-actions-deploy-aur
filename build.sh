@@ -54,19 +54,6 @@ git config --global user.name "$commit_username"
 git config --global user.email "$commit_email"
 echo '::endgroup::'
 
-if [ "$update_pkgver" = "true" ]; then
-  echo '::group::Updating pkgver'
-  echo 'Running `makepkg -od` to update pkgver'
-  mkdir -p /tmp/makepkg
-  cp "$pkgbuild" /tmp/makepkg/PKGBUILD
-  (
-    cd /tmp/makepkg;
-    makepkg -od;
-  )
-  pkgbuild=/tmp/makepkg/PKGBUILD
-  echo '::endgroup::'
-fi
-
 echo '::group::Cloning AUR package into /tmp/local-repo'
 git clone -v "https://aur.archlinux.org/${pkgname}.git" /tmp/local-repo
 echo '::endgroup::'
@@ -80,9 +67,24 @@ echo '::group::Copying files into /tmp/local-repo'
 # Ignore quote rule because we need to expand glob patterns to copy $assets
 if [[ -n "$assets" ]]; then
   echo 'Copying' $assets
-  cp -rt /tmp/local-repo/ $assets
+  cp -vrt /tmp/local-repo/ $assets
 fi
 echo '::endgroup::'
+
+if [ "$update_pkgver" = "true" ]; then
+  echo '::group::Updating pkgver'
+  echo 'Running `makepkg -od` to update pkgver'
+  
+  # Update the pkgver in a temp folder
+  tmp_makepkg=$(mktemp -d makepkg.XXXX)
+  cp -vr /tmp/local-repo/* $tmp_makepkg
+  BUILDDIR=$tmp_makepkg makepkg -od
+
+  # Copy back the PKGBUILD
+  cp $tmp_makepkg/PKGBUILD /tmp/local-repo/
+
+  echo '::endgroup::'
+fi
 
 echo '::group::Generating .SRCINFO'
 cd /tmp/local-repo
