@@ -76,7 +76,7 @@ if [ "$update_pkgver" = "true" ]; then
   echo 'Running `makepkg -od` to update pkgver'
   
   # Update the pkgver in a temp folder
-  tmp_makepkg=$(mktemp -d makepkg.XXXX)
+  tmp_makepkg=$(mktemp -d)
   cp -vr /tmp/local-repo/* $tmp_makepkg
   BUILDDIR=$tmp_makepkg makepkg -od
 
