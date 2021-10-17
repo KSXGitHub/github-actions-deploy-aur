@@ -77,10 +77,10 @@ if [ "$update_pkgver" = "true" ]; then
   
   # Update the pkgver in a temp folder
   tmp_makepkg=$(mktemp -d)
-  cp -r /tmp/local-repo/* $tmp_makepkg
+  cp -r /tmp/local-repo/. $tmp_makepkg
   (cd $tmp_makepkg && makepkg -od)
 
-  # Copy back the PKGBUILD
+  # Copy the PKGBUILD back
   cp $tmp_makepkg/PKGBUILD /tmp/local-repo/
 
   echo '::endgroup::'
