@@ -17,6 +17,10 @@ GitHub Actions to publish AUR package.
 **Optional** Newline-separated glob patterns for additional files to be added to the AUR repository.
 Glob patterns will be expanded by bash when copying the files to the repository.
 
+### `updpkgsums`
+
+**Optional** Update checksums using `updpkgsums`.
+
 ### `commit_username`
 
 **Required** The username to use when creating the new commit.
