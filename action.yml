@@ -15,6 +15,10 @@ inputs:
     description: 'Newline-separated glob patterns for additional files to be added to the AUR repository'
     required: false
     default: ''
+  updpkgsums:
+    description: 'Update checksums using `updpkgsums`'
+    required: false
+    default: 'false'
   commit_username:
     description: 'The username to use when creating the new commit'
     required: true

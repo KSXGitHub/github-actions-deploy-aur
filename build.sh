@@ -6,6 +6,7 @@ set -o errexit -o pipefail -o nounset
 pkgname=$INPUT_PKGNAME
 pkgbuild=$INPUT_PKGBUILD
 assets=$INPUT_ASSETS
+updpkgsums=$INPUT_UPDPKGSUMS
 commit_username=$INPUT_COMMIT_USERNAME
 commit_email=$INPUT_COMMIT_EMAIL
 ssh_private_key=$INPUT_SSH_PRIVATE_KEY
@@ -69,6 +70,13 @@ if [[ -n "$assets" ]]; then
   cp -rt /tmp/local-repo/ $assets
 fi
 echo '::endgroup::'
+
+if [ "$updpkgsums" == "true" ]; then
+	echo '::group::Updating checksums'
+	cd /tmp/local-repo/
+	updpkgsums
+	echo '::endgroup::'
+fi
 
 echo '::group::Generating .SRCINFO'
 cd /tmp/local-repo
