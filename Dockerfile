@@ -5,7 +5,8 @@ RUN pacman -S --noconfirm --needed --overwrite '*' \
       openssh sudo \
       git fakeroot binutils gcc awk binutils xz \
       libarchive bzip2 coreutils file findutils \
-      gettext grep gzip sed ncurses util-linux
+      gettext grep gzip sed ncurses util-linux \
+      pacman-contrib
 
 COPY entrypoint.sh /entrypoint.sh
 COPY build.sh /build.sh
