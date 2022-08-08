@@ -21,6 +21,10 @@ Glob patterns will be expanded by bash when copying the files to the repository.
 
 **Optional** Update checksums using `updpkgsums`.
 
+### `makepkg`
+
+**Optional** Build package using `makepkg` before deploy.
+
 ### `commit_username`
 
 **Required** The username to use when creating the new commit.
