@@ -19,8 +19,8 @@ inputs:
     description: 'Update checksums using `updpkgsums`'
     required: false
     default: 'false'
-  makepkg:
-    description: 'Build package using `makepkg` before deploy'
+  test:
+    description: 'Check that PKGBUILD could be built'
     required: false
     default: 'false'
   commit_username:

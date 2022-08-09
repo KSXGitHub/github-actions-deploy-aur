@@ -21,9 +21,9 @@ Glob patterns will be expanded by bash when copying the files to the repository.
 
 **Optional** Update checksums using `updpkgsums`.
 
-### `makepkg`
+### `test`
 
-**Optional** Build package using `makepkg` before deploy.
+**Optional** Check that PKGBUILD could be built.
 
 ### `commit_username`
 

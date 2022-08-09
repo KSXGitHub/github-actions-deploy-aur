@@ -7,7 +7,7 @@ pkgname=$INPUT_PKGNAME
 pkgbuild=$INPUT_PKGBUILD
 assets=$INPUT_ASSETS
 updpkgsums=$INPUT_UPDPKGSUMS
-makepkg=$INPUT_MAKEPKG
+test=$INPUT_TEST
 commit_username=$INPUT_COMMIT_USERNAME
 commit_email=$INPUT_COMMIT_EMAIL
 ssh_private_key=$INPUT_SSH_PRIVATE_KEY
@@ -79,7 +79,7 @@ if [ "$updpkgsums" == "true" ]; then
 	echo '::endgroup::'
 fi
 
-if [ "$makepkg" == "true" ]; then
+if [ "$test" == "true" ]; then
 	echo '::group::Building package with makepkg'
 	cd /tmp/local-repo/
 	makepkg --clean --cleanbuild --nodeps
