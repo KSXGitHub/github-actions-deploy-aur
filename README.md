@@ -21,6 +21,10 @@ Glob patterns will be expanded by bash when copying the files to the repository.
 
 **Optional** Update checksums using `updpkgsums`.
 
+### `test`
+
+**Optional** Check that PKGBUILD could be built.
+
 ### `commit_username`
 
 **Required** The username to use when creating the new commit.
