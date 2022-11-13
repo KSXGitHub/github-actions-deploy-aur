@@ -25,6 +25,10 @@ Glob patterns will be expanded by bash when copying the files to the repository.
 
 **Optional** Check that PKGBUILD could be built.
 
+### `test_flags`
+
+**Optional** Command line flags for makepkg to build the package (if `test` is enabled). The default flags are `--clean --cleanbuild --nodeps`.
+
 ### `commit_username`
 
 **Required** The username to use when creating the new commit.
