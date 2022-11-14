@@ -23,6 +23,10 @@ inputs:
     description: 'Check that PKGBUILD could be built'
     required: false
     default: 'false'
+  test_flags:
+    description: 'Command line flags for makepkg to build the package (if `test` is enabled)'
+    required: false
+    default: '--clean --cleanbuild --nodeps'
   commit_username:
     description: 'The username to use when creating the new commit'
     required: true
