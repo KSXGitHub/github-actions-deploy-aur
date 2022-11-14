@@ -8,7 +8,7 @@ pkgbuild=$INPUT_PKGBUILD
 assets=$INPUT_ASSETS
 updpkgsums=$INPUT_UPDPKGSUMS
 test=$INPUT_TEST
-test_flags=$INPUT_TEST_FLAGS
+read -r -a test_flags <<< "$INPUT_TEST_FLAGS"
 commit_username=$INPUT_COMMIT_USERNAME
 commit_email=$INPUT_COMMIT_EMAIL
 ssh_private_key=$INPUT_SSH_PRIVATE_KEY
@@ -83,7 +83,7 @@ fi
 if [ "$test" == "true" ]; then
 	echo '::group::Building package with makepkg'
 	cd /tmp/local-repo/
-	makepkg $test_flags
+	makepkg "${test_flags[@]}"
 	echo '::endgroup::'
 fi
 
