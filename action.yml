@@ -27,6 +27,9 @@ inputs:
     description: 'Command line flags for makepkg to build the package (if `test` is enabled)'
     required: false
     default: '--clean --cleanbuild --nodeps'
+  run_command:
+    description: 'Command to run after installing the package'
+    required: false
   commit_username:
     description: 'The username to use when creating the new commit'
     required: true

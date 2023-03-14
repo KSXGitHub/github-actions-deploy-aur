@@ -9,6 +9,7 @@ assets=$INPUT_ASSETS
 updpkgsums=$INPUT_UPDPKGSUMS
 test=$INPUT_TEST
 read -r -a test_flags <<< "$INPUT_TEST_FLAGS"
+run_command=$INPUT_RUN_COMMAND
 commit_username=$INPUT_COMMIT_USERNAME
 commit_email=$INPUT_COMMIT_EMAIL
 ssh_private_key=$INPUT_SSH_PRIVATE_KEY
@@ -91,6 +92,16 @@ echo '::group::Generating .SRCINFO'
 cd /tmp/local-repo
 makepkg --printsrcinfo >.SRCINFO
 echo '::endgroup::'
+
+if [ -n "$run_command" ]; then
+	echo '::group::Installing package with makepkg and run command'
+  git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si --noconfirm
+	cd /tmp/local-repo/
+  grep -E 'depends' .SRCINFO | cut -f 3 -d ' '| sed -e 's/://' | xargs yay -S --noconfirm
+	makepkg -si --noconfirm
+  eval "$run_command"
+	echo '::endgroup::'
+fi
 
 echo '::group::Committing files to the repository'
 if [[ -z "$assets" ]]; then
