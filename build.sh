@@ -9,7 +9,7 @@ assets=$INPUT_ASSETS
 updpkgsums=$INPUT_UPDPKGSUMS
 test=$INPUT_TEST
 read -r -a test_flags <<< "$INPUT_TEST_FLAGS"
-run_command=$INPUT_RUN_COMMAND
+post_process=$INPUT_POST_PROCESS
 commit_username=$INPUT_COMMIT_USERNAME
 commit_email=$INPUT_COMMIT_EMAIL
 ssh_private_key=$INPUT_SSH_PRIVATE_KEY
@@ -93,13 +93,10 @@ cd /tmp/local-repo
 makepkg --printsrcinfo >.SRCINFO
 echo '::endgroup::'
 
-if [ -n "$run_command" ]; then
-	echo '::group::Installing package with makepkg and run command'
-  git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si --noconfirm
+if [ -n "$post_process" ]; then
+	echo '::group::Executing post process commands'
 	cd /tmp/local-repo/
-  grep -E 'depends' .SRCINFO | cut -f 3 -d ' '| sed -e 's/://' | xargs yay -S --noconfirm
-	makepkg -si --noconfirm
-  eval "$run_command"
+  eval "$post_process"
 	echo '::endgroup::'
 fi
 
