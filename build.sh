@@ -9,6 +9,7 @@ assets=$INPUT_ASSETS
 updpkgsums=$INPUT_UPDPKGSUMS
 test=$INPUT_TEST
 read -r -a test_flags <<< "$INPUT_TEST_FLAGS"
+post_process=$INPUT_POST_PROCESS
 commit_username=$INPUT_COMMIT_USERNAME
 commit_email=$INPUT_COMMIT_EMAIL
 ssh_private_key=$INPUT_SSH_PRIVATE_KEY
@@ -91,6 +92,13 @@ echo '::group::Generating .SRCINFO'
 cd /tmp/local-repo
 makepkg --printsrcinfo >.SRCINFO
 echo '::endgroup::'
+
+if [ -n "$post_process" ]; then
+	echo '::group::Executing post process commands'
+	cd /tmp/local-repo/
+  eval "$post_process"
+	echo '::endgroup::'
+fi
 
 echo '::group::Committing files to the repository'
 if [[ -z "$assets" ]]; then

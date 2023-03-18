@@ -29,6 +29,10 @@ Glob patterns will be expanded by bash when copying the files to the repository.
 
 **Optional** Command line flags for makepkg to build the package (if `test` is enabled). The default flags are `--clean --cleanbuild --nodeps`.
 
+### `post_process`
+
+**Optional** A line of commands to execute after processing the package.
+
 ### `commit_username`
 
 **Required** The username to use when creating the new commit.
