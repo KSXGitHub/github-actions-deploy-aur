@@ -55,7 +55,7 @@ inputs:
   ssh_keyscan_types:
     description: 'Comma-separated list of types to use when adding aur.archlinux.org to known hosts'
     required: false
-    default: 'rsa,dsa,ecdsa,ed25519'
+    default: 'rsa,ecdsa,ed25519'
 runs:
   using: 'docker'
   image: 'Dockerfile'
