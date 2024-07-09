@@ -86,7 +86,7 @@ jobs:
           commit_email: ${{ secrets.AUR_EMAIL }}
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           commit_message: Update AUR package
-          ssh_keyscan_types: rsa,dsa,ecdsa,ed25519
+          ssh_keyscan_types: rsa,ecdsa,ed25519
 ```
 
 **Note:** Replace `<TAG>` in the above code snippet with a tag of this repo.
