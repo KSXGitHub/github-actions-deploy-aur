@@ -51,7 +51,7 @@ Glob patterns will be expanded by bash when copying the files to the repository.
 
 ### `allow_empty_commits`
 
-**Optional** Allow empty commits, i.e. commits with no change. The default value is `true`.
+**Optional** Allow empty commits, i.e. commits with no change. The default value is `false`.
 
 ### `force_push`
 

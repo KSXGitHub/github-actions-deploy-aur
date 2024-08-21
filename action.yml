@@ -47,7 +47,7 @@ inputs:
   allow_empty_commits:
     description: 'Allow empty commits, i.e. commits with no change.'
     required: false
-    default: 'true'
+    default: 'false'
   force_push:
     description: 'Use --force when push to the AUR.'
     required: false
