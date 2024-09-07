@@ -77,6 +77,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Generate PKGBUILD
+        run: bash ./generate-pkgbuild.bash
+
       - name: Publish AUR package
         uses: KSXGitHub/github-actions-deploy-aur@<TAG>
         with:
