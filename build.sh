@@ -64,7 +64,7 @@ echo '::endgroup::'
 echo '::group::Copying files into /tmp/local-repo'
 {
   echo "Copying $pkgbuild"
-  cp -r "$pkgbuild" /tmp/local-repo/
+  cp "$pkgbuild" /tmp/local-repo/PKGBUILD
 }
 # shellcheck disable=SC2086
 # Ignore quote rule because we need to expand glob patterns to copy $assets
