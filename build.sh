@@ -64,13 +64,13 @@ echo '::endgroup::'
 echo '::group::Copying files into /tmp/local-repo'
 {
   echo "Copying $pkgbuild"
-  cp "$pkgbuild" /tmp/local-repo/PKGBUILD
+  cp -v "$pkgbuild" /tmp/local-repo/PKGBUILD
 }
 # shellcheck disable=SC2086
 # Ignore quote rule because we need to expand glob patterns to copy $assets
 if [[ -n "$assets" ]]; then
   echo 'Copying' $assets
-  cp -rt /tmp/local-repo/ $assets
+  cp -rtv /tmp/local-repo/ $assets
 fi
 echo '::endgroup::'
 
