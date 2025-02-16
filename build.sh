@@ -70,7 +70,7 @@ echo '::group::Copying files into /tmp/local-repo'
 # Ignore quote rule because we need to expand glob patterns to copy $assets
 if [[ -n "$assets" ]]; then
   echo 'Copying' $assets
-  cp -rtv /tmp/local-repo/ $assets
+  cp -rvt /tmp/local-repo/ $assets
 fi
 echo '::endgroup::'
 
