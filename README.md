@@ -92,11 +92,14 @@ jobs:
           ssh_keyscan_types: rsa,ecdsa,ed25519
 ```
 
-**Note:** Replace `<TAG>` in the above code snippet with a tag of this repo.
+> [!NOTE]
+> Replace `<TAG>` in the above code snippet with a tag of this repo.
 
-**Tip:** To create secrets (such as `secrets.AUR_USERNAME`, `secrets.AUR_EMAIL`, and `secrets.AUR_SSH_PRIVATE_KEY` above), go to `$YOUR_GITHUB_REPO_URL/settings/secrets`. [Read this for more information](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets).
+> [!TIP]
+> To create secrets (such as `secrets.AUR_USERNAME`, `secrets.AUR_EMAIL`, and `secrets.AUR_SSH_PRIVATE_KEY` above), go to `$YOUR_GITHUB_REPO_URL/settings/secrets`. [Read this for more information](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets).
 
-**Tip:** This action does not generate PKGBUILD for you, you must generate it yourself (e.g. by using actions before this action).
+> [!TIP]
+> This action does not generate PKGBUILD for you, you must generate it yourself (e.g. by using actions before this action).
 
 ## Real-world applications
 
