@@ -48,6 +48,9 @@ if [[ -n "$asset_dir" ]]; then
     echo "::error::Invalid Value: inputs.asset_dir ('$asset_dir') does not contain a PKGBUILD." >&2
     exit 1
   fi
+  # Resolve to an absolute path now, while we are still in the workspace, so the
+  # later `cd /tmp/local-repo` does not change how a relative asset_dir resolves.
+  asset_dir=$(realpath "$asset_dir")
 else
   assert_non_empty inputs.pkgbuild "$pkgbuild"
 fi

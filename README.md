@@ -31,6 +31,11 @@ tracked in the AUR repository but absent from `asset_dir` are **deleted**, so re
 Because `asset_dir` is the full source of truth for the repository, it **must contain the `PKGBUILD`** and is
 **mutually exclusive** with both `pkgbuild` and `assets` (specifying it together with either is an error).
 
+> [!NOTE]
+> Copying is performed by `rsync` whose filter syntax only approximates `.gitignore` semantics (e.g. `!`
+> negation and some `**` anchoring nuances differ), so very complex `.gitignore` files may not be honoured
+> exactly.
+
 ### `updpkgsums`
 
 **Optional** Update checksums using `updpkgsums`.
