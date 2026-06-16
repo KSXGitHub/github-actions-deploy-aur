@@ -6,6 +6,7 @@ set -o errexit -o pipefail -o nounset
 pkgname=$INPUT_PKGNAME
 pkgbuild=$INPUT_PKGBUILD
 assets=$INPUT_ASSETS
+asset_dir=$INPUT_ASSET_DIR
 updpkgsums=$INPUT_UPDPKGSUMS
 test=$INPUT_TEST
 read -r -a test_flags <<< "$INPUT_TEST_FLAGS"
@@ -28,7 +29,28 @@ assert_non_empty() {
 }
 
 assert_non_empty inputs.pkgname "$pkgname"
-assert_non_empty inputs.pkgbuild "$pkgbuild"
+if [[ -n "$asset_dir" ]]; then
+  # asset_dir is the full source of truth for the repository, so it is
+  # mutually exclusive with both pkgbuild and assets.
+  if [[ -n "$pkgbuild" ]]; then
+    echo "::error::Invalid Value: inputs.asset_dir and inputs.pkgbuild are mutually exclusive." >&2
+    exit 1
+  fi
+  if [[ -n "$assets" ]]; then
+    echo "::error::Invalid Value: inputs.asset_dir and inputs.assets are mutually exclusive." >&2
+    exit 1
+  fi
+  if [[ ! -d "$asset_dir" ]]; then
+    echo "::error::Invalid Value: inputs.asset_dir ('$asset_dir') is not a directory." >&2
+    exit 1
+  fi
+  if [[ ! -f "$asset_dir/PKGBUILD" ]]; then
+    echo "::error::Invalid Value: inputs.asset_dir ('$asset_dir') does not contain a PKGBUILD." >&2
+    exit 1
+  fi
+else
+  assert_non_empty inputs.pkgbuild "$pkgbuild"
+fi
 assert_non_empty inputs.commit_username "$commit_username"
 assert_non_empty inputs.commit_email "$commit_email"
 assert_non_empty inputs.ssh_private_key "$ssh_private_key"
@@ -62,15 +84,29 @@ git clone -v "https://aur.archlinux.org/${pkgname}.git" /tmp/local-repo
 echo '::endgroup::'
 
 echo '::group::Copying files into /tmp/local-repo'
-{
-  echo "Copying $pkgbuild"
-  cp -v "$pkgbuild" /tmp/local-repo/PKGBUILD
-}
-# shellcheck disable=SC2086
-# Ignore quote rule because we need to expand glob patterns to copy $assets
-if [[ -n "$assets" ]]; then
-  echo 'Copying' $assets
-  cp -rvt /tmp/local-repo/ $assets
+if [[ -n "$asset_dir" ]]; then
+  cd /tmp/local-repo
+  # Mirror $asset_dir into the repo: first delete everything currently tracked
+  # (so files removed from $asset_dir are also removed from the AUR repo), then
+  # copy $asset_dir's contents back in. The .git directory is left untouched.
+  if git rev-parse --verify --quiet HEAD >/dev/null; then
+    echo 'Deleting tracked files'
+    git ls-tree -r --name-only -z HEAD | xargs -0 -r rm -fv
+  fi
+  echo "Mirroring $asset_dir into /tmp/local-repo"
+  # --filter=':- .gitignore' makes rsync honour any .gitignore files in $asset_dir.
+  rsync -av --filter=':- .gitignore' --exclude=.git "${asset_dir%/}/" /tmp/local-repo/
+else
+  {
+    echo "Copying $pkgbuild"
+    cp -v "$pkgbuild" /tmp/local-repo/PKGBUILD
+  }
+  # shellcheck disable=SC2086
+  # Ignore quote rule because we need to expand glob patterns to copy $assets
+  if [[ -n "$assets" ]]; then
+    echo 'Copying' $assets
+    cp -rvt /tmp/local-repo/ $assets
+  fi
 fi
 echo '::endgroup::'
 
@@ -101,13 +137,14 @@ if [ -n "$post_process" ]; then
 fi
 
 echo '::group::Committing files to the repository'
-if [[ -z "$assets" ]]; then
-  # When $assets are not set, we can add just PKGBUILD and .SRCINFO
+if [[ -z "$assets" && -z "$asset_dir" ]]; then
+  # When neither $assets nor $asset_dir are set, we can add just PKGBUILD and .SRCINFO
   # This is to prevent unintended behaviour and maintain backwards compatibility
   git add -fv PKGBUILD .SRCINFO
 else
-  # We cannot just re-use $assets because it contains absolute paths outside repository
-  # But we can just add all files in the repository which should also include all $assets
+  # We cannot just re-use $assets because it contains absolute paths outside repository.
+  # For $asset_dir we also need to stage deletions of files removed from the mirror.
+  # In both cases `git add --all` stages every change in the repository.
   git add --all
 fi
 
