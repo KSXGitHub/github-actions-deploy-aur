@@ -6,8 +6,6 @@ indent_size = 2
 end_of_line = lf
 charset = utf-8
 insert_final_newline = true
-trim_trailing_whitespace = true
 
-# Markdown uses trailing whitespace for hard line breaks.
-[*.md]
-trim_trailing_whitespace = false
+[*.{sh,bash}]
+indent_size = 4
