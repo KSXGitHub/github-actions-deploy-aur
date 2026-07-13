@@ -9,7 +9,7 @@ assets=$INPUT_ASSETS
 asset_dir=$INPUT_ASSET_DIR
 updpkgsums=$INPUT_UPDPKGSUMS
 test=$INPUT_TEST
-read -r -a test_flags <<< "$INPUT_TEST_FLAGS"
+read -r -a test_flags <<<"$INPUT_TEST_FLAGS"
 post_process=$INPUT_POST_PROCESS
 commit_username=$INPUT_COMMIT_USERNAME
 commit_email=$INPUT_COMMIT_EMAIL
@@ -114,17 +114,17 @@ fi
 echo '::endgroup::'
 
 if [ "$updpkgsums" == "true" ]; then
-	echo '::group::Updating checksums'
-	cd /tmp/local-repo/
-	updpkgsums
-	echo '::endgroup::'
+  echo '::group::Updating checksums'
+  cd /tmp/local-repo/
+  updpkgsums
+  echo '::endgroup::'
 fi
 
 if [ "$test" == "true" ]; then
-	echo '::group::Building package with makepkg'
-	cd /tmp/local-repo/
-	makepkg "${test_flags[@]}"
-	echo '::endgroup::'
+  echo '::group::Building package with makepkg'
+  cd /tmp/local-repo/
+  makepkg "${test_flags[@]}"
+  echo '::endgroup::'
 fi
 
 echo '::group::Generating .SRCINFO'
@@ -133,10 +133,10 @@ makepkg --printsrcinfo >.SRCINFO
 echo '::endgroup::'
 
 if [ -n "$post_process" ]; then
-	echo '::group::Executing post process commands'
-	cd /tmp/local-repo/
+  echo '::group::Executing post process commands'
+  cd /tmp/local-repo/
   eval "$post_process"
-	echo '::endgroup::'
+  echo '::endgroup::'
 fi
 
 echo '::group::Committing files to the repository'

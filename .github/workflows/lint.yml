@@ -1,0 +1,34 @@
+name: Lint
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  shfmt:
+    name: shell formatting (shfmt)
+    runs-on: ubuntu-latest
+    env:
+      # Keep in sync with any local tooling. Dependabot does not bump this, so
+      # bump it manually when upgrading shfmt.
+      SHFMT_VERSION: v3.10.0
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install shfmt
+        run: |
+          curl -fsSL \
+            "https://github.com/mvdan/sh/releases/download/${SHFMT_VERSION}/shfmt_${SHFMT_VERSION}_linux_amd64" \
+            -o /usr/local/bin/shfmt
+          chmod +x /usr/local/bin/shfmt
+          shfmt --version
+
+      # shfmt reads indent_style/indent_size from .editorconfig, so this
+      # enforces the spaces-only, 2-space indentation. It exits non-zero (and
+      # prints a diff) if any shell script is not formatted accordingly.
+      - name: Check formatting
+        run: shfmt -d .
