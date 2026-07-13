@@ -149,6 +149,11 @@ else
   # For $asset_dir we also need to stage deletions of files removed from the mirror.
   # In both cases `git add --all` stages every change in the repository.
   git add --all
+  # PKGBUILD and .SRCINFO are mandatory for every AUR package, and .SRCINFO is
+  # always (re)generated above. `git add --all` honours .gitignore, so a
+  # .gitignore present in the repository (e.g. one mirrored in from $asset_dir)
+  # could silently exclude them. Force-add to guarantee both are staged.
+  git add -fv PKGBUILD .SRCINFO
 fi
 
 case "$allow_empty_commits" in
