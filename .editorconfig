@@ -1,5 +1,3 @@
-# EditorConfig helps maintain consistent coding styles across editors.
-# https://editorconfig.org
 root = true
 
 [*]

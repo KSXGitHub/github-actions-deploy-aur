@@ -13,8 +13,6 @@ jobs:
     name: shell formatting (shfmt)
     runs-on: ubuntu-latest
     env:
-      # Keep in sync with any local tooling. Dependabot does not bump this, so
-      # bump it manually when upgrading shfmt.
       SHFMT_VERSION: v3.10.0
     steps:
       - uses: actions/checkout@v4
@@ -27,8 +25,5 @@ jobs:
           chmod +x /usr/local/bin/shfmt
           shfmt --version
 
-      # shfmt reads indent_style/indent_size from .editorconfig, so this
-      # enforces the spaces-only, 2-space indentation. It exits non-zero (and
-      # prints a diff) if any shell script is not formatted accordingly.
       - name: Check formatting
         run: shfmt -d .
